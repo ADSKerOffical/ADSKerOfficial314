@@ -1,0 +1,141 @@
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+
+local Window = OrionLib:MakeWindow({Name = "Title of the library", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
+
+local Tab = Window:MakeTab({
+	Name = "Main functions",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local Section = Tab:AddSection({
+	Name = "Section"
+})
+
+Tab:AddTextbox({
+	Name = "Speed",
+	Default = "Input",
+	TextDisappear = true,
+	Callback = function(Value)
+		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+	end	  
+})
+
+Tab:AddTextbox({
+	Name = "JumpPower",
+	Default = "Input",
+	TextDisappear = true,
+	Callback = function(Value)
+		game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
+	end	  
+})
+
+Tab:AddTextbox({
+	Name = "Kill aura",
+	Default = "input",
+	TextDisappear = true,
+	Callback = function(Value)
+		local range = Value
+
+local player = game:GetService("Players").LocalPlayer
+ 
+game:GetService("RunService").RenderStepped:Connect(function()
+    local p = game.Players:GetPlayers()
+    for i = 2, #p do local v = p[i].Character
+        if v and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0 and v:FindFirstChild("HumanoidRootPart") and player:DistanceFromCharacter(v.HumanoidRootPart.Position) <= range then
+            local tool = player.Character and player.Character:FindFirstChildOfClass("Tool")
+            if tool and tool:FindFirstChild("Handle") then
+                tool:Activate()
+                for i,v in next, v:GetChildren() do
+                    if v:IsA("BasePart") then
+                        firetouchinterest(tool.Handle,v,0)
+                        firetouchinterest(tool.Handle,v,1)
+                    end
+                end
+            end
+        end
+    end
+end)
+	end	  
+})
+
+Tab:AddButton({
+	Name = "Keyboard",
+	Callback = function()
+      		loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
+  	end    
+})
+
+Tab:AddTextbox({
+	Name = "Multi gear (press e)",
+	Default = "input speed",
+	TextDisappear = true,
+	Callback = function(Value)
+		lp = game:GetService("Players").LocalPlayer
+
+game:GetService("UserInputService").InputBegan:Connect(function(key)
+	if key.KeyCode == Enum.KeyCode.E then
+		for i,tool in pairs(lp.Backpack:GetChildren()) do
+			if tool:IsA("Tool") then
+				tool.Parent = lp.Character
+				tool:Activate()
+				task.wait(Value)
+				tool.Parent = lp.Backpack
+			end
+		end
+	end
+end)
+	end	  
+})
+
+Tab:AddButton({
+	Name = "Equip tools",
+	Callback = function()
+      		loadstring(game:HttpGet("https://pastebin.com/raw/gR4Zki4n"))()
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Drop tools",
+	Callback = function()
+      		for i,v in pairs(game.Players.LocalPlayer.Backpack:GetDescendants()) do
+   if v:IsA("Tool")  then
+    wait()
+    v.Parent = game.Players.LocalPlayer.Character
+    wait()
+    v.Parent = game.Workspace
+end
+end
+  	end    
+})
+
+local Tab = Window:MakeTab({
+	Name = "Recommended hubs",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local Section = Tab:AddSection({
+	Name = "Hubs recommended for this place"
+})
+
+Tab:AddButton({
+	Name = "Ghost hub",
+	Callback = function()
+      		loadstring(game:HttpGet('https://raw.githubusercontent.com/GhostPlayer352/Test4/main/GhostHub'))()
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Peruanito exe",
+	Callback = function()
+      		loadstring(game:HttpGet("https://raw.githubusercontent.com/i4mitty/Peruanito.exe/main/Peruanito.exe.lua"))()
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Pendulum hub",
+	Callback = function()
+      		loadstring(game:HttpGet("https://raw.githubusercontent.com/Tescalus/Pendulum-Hubs-Source/main/Pendulum%20Hub%20V5.lua"))()
+  	end    
+})
